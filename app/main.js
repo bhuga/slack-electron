@@ -95,7 +95,9 @@ app.on('ready', function () {
   });
 
   ipc.on('badge', function(event, arg) {
-    app.dock.setBadge(arg.badge_text);
+    if (process.platform === 'darwin') {
+      app.dock.setBadge(arg.badge_text);
+    }
   });
 
   app.on('zoom-in', function(event, arg) {
